@@ -20,12 +20,25 @@
                         url('https://as2.ftcdn.net/v2/jpg/19/23/62/57/1000_F_1923625739_cvJ5pm0fpCgOKFjsoSU7oerbImd13UnD.webp'); 
             background-size: cover;
             background-position: top;
-            color: white; 
+   /* This changes the general header text color to Black */
+            color: #000000; 
+    
             padding: 6rem 2rem; 
-            text-align: center; 
-        }
-        header h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; text-transform: uppercase; }
-        header p { font-weight: 300; font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
+            text-align: center;
+        header h1 { 
+                    margin: 0; 
+                    font-size: 3rem; 
+                    letter-spacing: 1px; 
+                    text-transform: uppercase; 
+                    color: #000000; /* Explicitly sets the Name to Black */
+            }
+        header p { 
+                    font-weight: 400; /* Increased weight slightly for better visibility in black */
+                    font-size: 1.3rem; 
+                    opacity: 1; /* Changed from 0.9 to 1 for maximum darkness */
+                    margin-top: 10px; 
+                    color: #000000; /* Explicitly sets the Role to Black */
+            }
 
         .container { max-width: 1000px; margin: -50px auto 2rem; padding: 0 20px; }
         
@@ -112,7 +125,7 @@
         <h2>Professional Journey</h2>
         
         <div class="job-entry">
-            <p class="job-title">Operations Manager (Part-time)</p>
+            <p class="job-title">Operations Manager</p>
             <span class="job-meta">KolFil (Cold Calling Agency) | Oct 2025 – Present</span>
             <ul>
                 <li>Manage and coach a team of Sales Development Representatives (SDR).</li>
