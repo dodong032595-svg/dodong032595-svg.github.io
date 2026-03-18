@@ -1,184 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nestor Jr Tag-at | Operations & Global Reporting Portfolio</title>
-    <style>
-        :root {
-            --primary: #1a2a3a;
-            --accent: #3498db;
-            --text: #000000;
-            --light: #f4f7f6;
-            --white: #ffffff;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestor Jr Tag-at | Operations & Global Reporting Portfolio</title>
+    <style>
+        :root {
+            --primary: #1a2a3a; /* Deep Navy */
+            --accent: #3498db;  /* Professional Blue */
+            --text: #000000;    /* Solid Black for body text */
+            --light: #f4f7f6;   /* Light gray background */
+            --white: #ffffff;
+        }
 
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background: var(--light); }
-        
-        header { 
-            background: linear-gradient(rgba(26, 42, 58, 0.4), rgba(26, 42, 58, 0.4)), 
-                        url('https://as2.ftcdn.net/v2/jpg/19/23/62/57/1000_F_1923625739_cvJ5pm0fpCgOKFjsoSU7oerbImd13UnD.webp'); 
-            background-size: cover;
-            background-position: top;
-            color: white; 
-            padding: 6rem 2rem; 
-            text-align: center; 
-        }
-        header h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; text-transform: uppercase; }
-        header p { font-weight: 300; font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text); 
+            margin: 0; 
+            padding: 0; 
+            background: var(--light); 
+        }
+        
+        /* Restored Header with readable text */
+        header { 
+            background: linear-gradient(rgba(26, 42, 58, 0.4), rgba(26, 42, 58, 0.4)), 
+                        url('https://as2.ftcdn.net/v2/jpg/19/23/62/57/1000_F_1923625739_cvJ5pm0fpCgOKFjsoSU7oerbImd13UnD.webp'); 
+            background-size: cover;
+            background-position: top;
+            color: white; /* Header text must be white to be visible on the image */
+            padding: 6rem 2rem; 
+            text-align: center; 
+        }
 
-        .container { max-width: 1000px; margin: -50px auto 2rem; padding: 0 20px; }
-        
-        .profile-card { 
-            background: var(--white); 
-            padding: 3rem; 
-            border-radius: 12px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        .portrait-frame {
-            width: 250px;
-            height: 250px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 5px solid var(--white);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+        header h1 { 
+            margin: 0; 
+            font-size: 3rem; 
+            letter-spacing: 1px; 
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Adds depth */
+        }
 
-        section { background: var(--white); padding: 2.5rem; margin-top: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h2 { color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; display: inline-block; margin-bottom: 1.5rem; }
+        header p { 
+            font-weight: 300; 
+            font-size: 1.3rem; 
+            opacity: 1; 
+            margin-top: 10px; 
+        }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .skill-item { background: #f0f4f8; margin: 5px 0; padding: 10px 15px; border-radius: 6px; font-weight: 500; color: var(--primary); border-left: 4px solid var(--accent); }
+        .container { max-width: 1000px; margin: -50px auto 2rem; padding: 0 20px; }
+        
+        .profile-card { 
+            background: var(--white); 
+            padding: 3rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
 
-        .job-entry { margin-bottom: 2rem; position: relative; padding-left: 20px; border-left: 2px solid #ddd; }
-        .job-entry::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
-        .job-title { font-weight: bold; font-size: 1.2rem; color: var(--primary); margin: 0; }
-        .job-meta { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
-        
-        .footer { background: var(--primary); color: white; padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
-        .footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .portrait-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 5px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-        @media (max-width: 768px) {
-            .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2rem; }
-            .portrait-frame { margin: 0 auto; }
-            header h1 { font-size: 2.2rem; }
-        }
-    </style>
+        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        section { 
+            background: var(--white); 
+            padding: 2.5rem; 
+            margin-top: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+
+        h2 { 
+            color: var(--primary); 
+            border-bottom: 3px solid var(--accent); 
+            padding-bottom: 0.5rem; 
+            display: inline-block; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+        .skill-item { 
+            background: #f0f4f8; 
+            margin: 5px 0; 
+            padding: 10px 15px; 
+            border-radius: 6px; 
+            font-weight: 600; /* Bolder for visibility */
+            color: var(--primary); 
+            border-left: 4px solid var(--accent); 
+        }
+
+        .job-entry { margin-bottom: 2rem; position: relative; padding-left: 20px; border-left: 2px solid #ddd; }
+        .job-entry::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+        
+        .job-title { font-weight: bold; font-size: 1.2rem; color: var(--primary); margin: 0; }
+        .job-meta { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
+        
+        .footer { 
+            background: var(--primary); 
+            color: white; 
+            padding: 4rem 2rem; 
+            text-align: center; 
+            margin-top: 4rem; 
+        }
+
+        .footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2rem; }
+            .portrait-frame { margin: 0 auto; }
+            header h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <h1>Nestor Jr Tag-at</h1>
-    <p>Operations & Global Reporting Manager</p>
+    <h1>Nestor Jr Tag-at</h1>
+    <p>Operations & Global Reporting Manager</p>
 </header>
 
 <div class="container">
-    <div class="profile-card">
-        <div class="portrait-frame">
-            <img src="portrait.jpg" alt="Nestor Jr Tag-at">
-        </div>
-        <div class="summary">
-            <h2>Executive Summary</h2>
-            <p>Operations and Global Reporting Manager with over 9 years of experience driving organizational performance through data strategy and operational leadership. I am an expert in data transformation, visualization, and insight generation using tools like <strong>Power Query, VBA, SQL, and Excel</strong>.</p>
-        </div>
-    </div>
+    <div class="profile-card">
+        <div class="portrait-frame">
+            <img src="portrait.jpg" alt="Nestor Jr Tag-at">
+        </div>
+        <div class="summary">
+            <h2>Executive Summary</h2>
+            <p>Operations and Global Reporting Manager with over 9 years of experience driving organizational performance through data strategy and operational leadership. I am an expert in data transformation, visualization, and insight generation using tools like <strong>Power Query, VBA, SQL, and Excel</strong>.</p>
+        </div>
+    </div>
 
-    <section>
-        <h2>Technical Expertise</h2>
-        <div class="skills-grid">
-            <div>
-                <h3>Skills</h3>
-                <div class="skill-item">Data Entry, Cleanup, & Transformation</div>
-                <div class="skill-item">Power Query & VBA Macros</div>
-                <div class="skill-item">SQL (MS Access/Superset)</div>
-                <div class="skill-item">Dashboard Design (MS Excel)</div>
-            </div>
-            <div>
-                <h3>Analytics & Operations</h3>
-                <div class="skill-item">Workforce Analytics</div>
-                <div class="skill-item">Data Driven Analysis (DDA)</div>
-                <div class="skill-item">Impact to Performance Analysis</div>
-                <div class="skill-item">Operational Leadership</div>
-            </div>
-        </div>
-    </section>
+    <section>
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+            <div>
+                <h3>Skills</h3>
+                <div class="skill-item">Data Entry, Cleanup, & Transformation</div>
+                <div class="skill-item">Power Query & VBA Macros</div>
+                <div class="skill-item">SQL (MS Access/Superset)</div>
+                <div class="skill-item">Dashboard Design (MS Excel)</div>
+            </div>
+            <div>
+                <h3>Analytics & Operations</h3>
+                <div class="skill-item">Workforce Analytics</div>
+                <div class="skill-item">Data Driven Analysis (DDA)</div>
+                <div class="skill-item">Impact to Performance Analysis</div>
+                <div class="skill-item">Operational Leadership</div>
+            </div>
+        </div>
+    </section>
 
-    <section>
-        <h2>Professional Journey</h2>
+    <section>
+        <h2>Professional Journey</h2>
 
         <div class="job-entry">
-        <p class="job-title">Operations Manager</p>
-        <span class="job-meta">KolFil (Cold Calling Agency) | Oct 2025 – Present</span>
-        <ul>
-            <li>Manage and coach a team of Virtual Assistants and Sales Development Representatives (SDR).</li>
-            <li>Refining and modifying outreach scripts for improved conversion.</li>
-            <li>Transform and visualize raw dialer data into actionable performance dashboards.</li>
-            <li>Design, recommend, and implement incentive schemes and operational processes to drive productivity.</li>
-            <li>List uploads and maintenance.</li>
-            <li>Facilitate weekly Client Performance Reviews.</li>
-        </ul>
-    </div>
+            <p class="job-title">Operations Manager</p>
+            <span class="job-meta">KolFil (Cold Calling Agency) | Oct 2025 – Present</span>
+            <ul>
+                <li>Manage and coach a team of Virtual Assistants and Sales Development Representatives (SDR).</li>
+                <li>Refining and modifying outreach scripts for improved conversion.</li>
+                <li>Transform and visualize raw dialer data into actionable performance dashboards.</li>
+                <li>Design, recommend, and implement incentive schemes and operational processes to drive productivity.</li>
+                <li>List uploads and maintenance.</li>
+                <li>Facilitate weekly Client Performance Reviews.</li>
+            </ul>
+        </div>
         
-        <div class="job-entry">
-            <p class="job-title">Manager (Global Reporting)</p>
-            <span class="job-meta">VXI Global Holdings | Dec 2022 – Oct 2025</span>
-            <ul>
-                <li>Delivered complex executive-level reporting for global and local leadership.</li>
-                <li>Managed high-impact reports including <strong>PPRO Coaching Compliance</strong> (Global), <strong>PSP Pass Rate</strong> (Global), <strong>P4P consolidated targets</strong> (PH), and <strong>QPB for Managers and Up</strong> (PH).</li>
-            </ul>
-        </div>
+        <div class="job-entry">
+            <p class="job-title">Manager (Global Reporting)</p>
+            <span class="job-meta">VXI Global Holdings | Dec 2022 – Oct 2025</span>
+            <ul>
+                <li>Delivered complex executive-level reporting for global and local leadership.</li>
+                <li>Managed high-impact reports including <strong>PPRO Coaching Compliance</strong> (Global), <strong>PSP Pass Rate</strong> (Global), <strong>P4P consolidated targets</strong> (PH), and <strong>QPB for Managers and Up</strong> (PH).</li>
+            </ul>
+        </div>
 
-        <div class="job-entry">
-            <p class="job-title">Operations Manager (Financial Account)</p>
-            <span class="job-meta">VXI Global Holdings | Aug 2021 – Dec 2022</span>
-            <ul>
-                <li>Recognized as **Top 1 OM for 2022 Q2 and Q3**.</li>
-                <li>Managed program files for NPS/VOC, Impact to Performance Dashboards, and Attendance Projections.</li>
-            </ul>
-        </div>
+        <div class="job-entry">
+            <p class="job-title">Operations Manager (Financial Account)</p>
+            <span class="job-meta">VXI Global Holdings | Aug 2021 – Dec 2022</span>
+            <ul>
+                <li>Recognized as <strong>Top 1 OM for 2022 Q2 and Q3</strong>.</li>
+                <li>Managed program files for NPS/VOC, Impact to Performance Dashboards, and Attendance Projections.</li>
+            </ul>
+        </div>
 
-        <div class="job-entry">
-            <p class="job-title">Team Leader (Mobility Retention)</p>
-            <span class="job-meta">VXI Global Holdings | Feb 2019 – Aug 2021</span>
-            <ul>
-                <li>System Ambassador for AT&T, recommending tool and process improvements to clients.</li>
-                <li>Awarded **Top 1 TL for Q4 2019**.</li>
-            </ul>
-        </div>
+        <div class="job-entry">
+            <p class="job-title">Team Leader (Mobility Retention)</p>
+            <span class="job-meta">VXI Global Holdings | Feb 2019 – Aug 2021</span>
+            <ul>
+                <li>System Ambassador for AT&T, recommending tool and process improvements to clients.</li>
+                <li>Awarded <strong>Top 1 TL for Q4 2019</strong>.</li>
+            </ul>
+        </div>
 
-        <div class="job-entry">
-            <p class="job-title">Workforce Analyst (Sales & Service)</p>
-            <span class="job-meta">Teleperformance (Davao) | Jan 2017 – Jul 2017</span>
-            <ul>
-                <li>Managed Line Adherence for multiple Lines of Business (Sales & Service).</li>
-            </ul>
-        </div>
+        <div class="job-entry">
+            <p class="job-title">Workforce Analyst (Sales & Service)</p>
+            <span class="job-meta">Teleperformance (Davao) | Jan 2017 – Jul 2017</span>
+            <ul>
+                <li>Managed Line Adherence for multiple Lines of Business (Sales & Service).</li>
+            </ul>
+        </div>
 
-        <div class="job-entry">
-            <p class="job-title">Technical Support</p>
-            <span class="job-meta">Teleperformance (Makati - Davao) | Apr 2015 – Jan 2017</span>
-            <ul>
-                <li>Provided technical support for Telco accounts (Phone, Internet, and Mobile).</li>
-            </ul>
-        </div>
-    </section>
+        <div class="job-entry">
+            <p class="job-title">Technical Support</p>
+            <span class="job-meta">Teleperformance (Makati - Davao) | Apr 2015 – Jan 2017</span>
+            <ul>
+                <li>Provided technical support for Telco accounts (Phone, Internet, and Mobile).</li>
+            </ul>
+        </div>
+    </section>
 
-    <section>
-        <h2>Education & Credentials</h2>
-        <p><strong>BS in Marine Transportation (Associate Graduate)</strong> | MATS College of Technology </p>
-        <p><strong>Key Certifications:</strong> LA Trained (Coaching Tactics), 7 Habits, Rising Star </p>
-    </section>
+    <section>
+        <h2>Education & Credentials</h2>
+        <p><strong>BS in Marine Transportation (Associate Graduate)</strong> | MATS College of Technology </p>
+        <p><strong>Key Certifications:</strong> LA Trained (Coaching Tactics), 7 Habits, Rising Star </p>
+    </section>
 </div>
 
 <div class="footer">
-    <h2>Let's Connect</h2>
-    <p>Phone: +63 9396635282 </p>
-    <p>Email: <a href="mailto:dodong032595@gmail.com">dodong032595@gmail.com</a> </p>
+    <h2>Let's Connect</h2>
+    <p>Phone: +63 9396635282 </p>
+    <p>Email: <a href="mailto:dodong032595@gmail.com">dodong032595@gmail.com</a> </p>
 </div>
 
 </body>
