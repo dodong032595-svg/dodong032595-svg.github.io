@@ -260,41 +260,61 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* MOBILE ADJUSTMENTS - UPDATED FOR TOOLTIP FIX */
+        /* MOBILE ADJUSTMENTS - FIXED TECHNICAL SKILLS OVERFLOW */
         @media (max-width: 900px) {
             .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2.5rem; }
             .portrait-frame { margin: 0 auto; width: 220px; height: 220px; }
             header h1 { font-size: 2.5rem; }
             
-            /* FIX: Tooltips behavior for smaller screens */
-            .skill-item { cursor: pointer; }
+            /* Skill Grid to single column */
+            .skills-grid { grid-template-columns: 1fr; }
+
+            /* Fix Tooltip by making it a relative block inside the card */
+            .skill-item { 
+                cursor: pointer; 
+                display: block; 
+                height: auto; 
+                padding: 15px;
+            }
             
             .skill-desc { 
-                position: static; /* Removes absolute positioning so it stays on screen */
+                position: relative; /* Removes floating, keeps text on screen */
+                bottom: 0;
+                left: 0;
+                transform: none; /* Removes the -50% shift that cuts off text */
                 width: 100%; 
+                max-width: 100%;
                 opacity: 0; 
+                max-height: 0; /* Smooth expand */
                 visibility: hidden; 
-                display: none; 
-                margin-top: 10px; 
-                transform: none; /* Removes the -50% offset causing the cutoff */
+                display: block; 
+                margin-top: 0; 
                 background: rgba(26, 42, 58, 0.05);
                 color: var(--primary);
                 text-align: left;
-                padding: 10px;
+                padding: 0 10px;
                 box-shadow: none;
                 border-radius: 8px;
+                overflow: hidden;
+                transition: all 0.3s ease;
             }
 
-            .skill-item:hover .skill-desc { 
-                display: block; 
+            .skill-item:hover .skill-desc, 
+            .skill-item:active .skill-desc { 
                 opacity: 1; 
                 visibility: visible; 
+                max-height: 200px;
+                padding: 10px;
+                margin-top: 10px;
             }
 
-            .skill-desc::after { display: none; } /* Hide the triangle arrow */
+            .skill-desc::after { display: none; }
             
-            /* Keep background light on mobile hover to ensure readability */
-            .skill-item:hover { background: #f1f5f9; color: var(--primary); transform: none; }
+            .skill-item:hover { 
+                background: #f1f5f9; 
+                color: var(--primary); 
+                transform: none; 
+            }
         }
     </style>
 </head>
