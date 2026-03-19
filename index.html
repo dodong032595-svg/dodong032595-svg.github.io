@@ -168,17 +168,19 @@
             border-color: var(--primary) transparent transparent transparent;
         }
 
-        .skill-item:hover { 
-            background: var(--primary); 
-            color: white; 
-            transform: translateY(-2px);
-            z-index: 50;
-        }
-
-        .skill-item:hover .skill-desc { 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateX(-50%) translateY(0);
+        /* Desktop Hover Behavior */
+        @media (min-width: 901px) {
+            .skill-item:hover { 
+                background: var(--primary); 
+                color: white; 
+                transform: translateY(-2px);
+                z-index: 50;
+            }
+            .skill-item:hover .skill-desc { 
+                opacity: 1; 
+                visibility: visible; 
+                transform: translateX(-50%) translateY(0);
+            }
         }
 
         /* --- PROFESSIONAL JOURNEY ACCORDION --- */
@@ -260,61 +262,55 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* MOBILE ADJUSTMENTS - FIXED TECHNICAL SKILLS OVERFLOW */
+        /* MOBILE ADJUSTMENTS - FORCING VISIBILITY */
         @media (max-width: 900px) {
             .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2.5rem; }
             .portrait-frame { margin: 0 auto; width: 220px; height: 220px; }
             header h1 { font-size: 2.5rem; }
             
-            /* Skill Grid to single column */
             .skills-grid { grid-template-columns: 1fr; }
 
-            /* Fix Tooltip by making it a relative block inside the card */
             .skill-item { 
-                cursor: pointer; 
-                display: block; 
-                height: auto; 
+                cursor: pointer;
+                display: block;
+                height: auto;
                 padding: 15px;
             }
-            
+
+            /* Skill descriptions no longer "pop up" or float. They expand inline. */
             .skill-desc { 
-                position: relative; /* Removes floating, keeps text on screen */
-                bottom: 0;
-                left: 0;
-                transform: none; /* Removes the -50% shift that cuts off text */
-                width: 100%; 
-                max-width: 100%;
+                position: relative !important; 
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
+                width: 100% !important; 
+                max-width: 100% !important;
                 opacity: 0; 
-                max-height: 0; /* Smooth expand */
+                max-height: 0; 
                 visibility: hidden; 
                 display: block; 
                 margin-top: 0; 
-                background: rgba(26, 42, 58, 0.05);
-                color: var(--primary);
-                text-align: left;
-                padding: 0 10px;
-                box-shadow: none;
-                border-radius: 8px;
+                background: rgba(26, 42, 58, 0.08) !important;
+                color: var(--primary) !important;
+                text-align: left !important;
+                padding: 0 10px !important;
+                box-shadow: none !important;
                 overflow: hidden;
-                transition: all 0.3s ease;
+                transition: all 0.4s ease;
             }
 
-            .skill-item:hover .skill-desc, 
-            .skill-item:active .skill-desc { 
-                opacity: 1; 
-                visibility: visible; 
-                max-height: 200px;
-                padding: 10px;
+            /* Active class to trigger the expand on mobile */
+            .skill-item.mobile-active .skill-desc {
+                opacity: 1;
+                visibility: visible;
+                max-height: 300px; /* Large enough for long text */
+                padding: 12px !important;
                 margin-top: 10px;
             }
 
-            .skill-desc::after { display: none; }
+            .skill-desc::after { display: none !important; }
             
-            .skill-item:hover { 
-                background: #f1f5f9; 
-                color: var(--primary); 
-                transform: none; 
-            }
+            .skill-item:hover { background: #f1f5f9; color: var(--primary); transform: none; }
         }
     </style>
 </head>
@@ -338,41 +334,42 @@
 
     <section>
         <h2>Technical Expertise</h2>
+        <p style="font-size: 0.9rem; color: #64748b; margin-top: -1.5rem; margin-bottom: 1.5rem;" class="mobile-only">(Tap a skill to see the definition)</p>
         <div class="skills-grid">
             <div>
                 <h3>Reporting & Data</h3>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Data Entry, Cleanup, & Transformation
                     <div class="skill-desc">Fixing structural errors, removing duplicates, and converting raw data into a consistent, usable format.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Power Query & VBA Macros
                     <div class="skill-desc">Automating repeatable data pipelines and UI tasks to eliminate manual effort and human error.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     SQL (MS Access / Superset)
                     <div class="skill-desc">Querying databases to extract live data and connecting it to visualization layers for real-time monitoring.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Dashboard Design (MS Excel)
                     <div class="skill-desc">Creating visual interfaces that consolidate KPIs, allowing stakeholders to make quick, data-driven decisions.</div>
                 </div>
             </div>
             <div>
                 <h3>Analytics & Operations</h3>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Workforce Analytics
                     <div class="skill-desc">Measuring schedule adherence, forecast accuracy, and agent productivity to optimize staffing levels.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Data Driven Analysis (DDA)
                     <div class="skill-desc">Using empirical evidence and quantitative metrics rather than intuition to guide organizational strategy.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Impact to Performance Analysis
                     <div class="skill-desc">Evaluating how operational changes or behaviors directly influence business goals and bottom-line profitability.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" onclick="this.classList.toggle('mobile-active')">
                     Operational Leadership
                     <div class="skill-desc">Managing core activities, resolving bottlenecks, and motivating teams to ensure consistent quality delivery.</div>
                 </div>
