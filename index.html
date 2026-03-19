@@ -260,7 +260,7 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* MOBILE ADJUSTMENTS */
+        /* MOBILE ADJUSTMENTS - UPDATED FOR TOOLTIP FIX */
         @media (max-width: 900px) {
             .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2.5rem; }
             .portrait-frame { margin: 0 auto; width: 220px; height: 220px; }
@@ -270,18 +270,19 @@
             .skill-item { cursor: pointer; }
             
             .skill-desc { 
-                position: static; 
+                position: static; /* Removes absolute positioning so it stays on screen */
                 width: 100%; 
                 opacity: 0; 
                 visibility: hidden; 
                 display: none; 
                 margin-top: 10px; 
-                transform: none;
+                transform: none; /* Removes the -50% offset causing the cutoff */
                 background: rgba(26, 42, 58, 0.05);
                 color: var(--primary);
                 text-align: left;
                 padding: 10px;
                 box-shadow: none;
+                border-radius: 8px;
             }
 
             .skill-item:hover .skill-desc { 
@@ -290,7 +291,9 @@
                 visibility: visible; 
             }
 
-            .skill-desc::after { display: none; }
+            .skill-desc::after { display: none; } /* Hide the triangle arrow */
+            
+            /* Keep background light on mobile hover to ensure readability */
             .skill-item:hover { background: #f1f5f9; color: var(--primary); transform: none; }
         }
     </style>
