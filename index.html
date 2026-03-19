@@ -13,7 +13,7 @@
             --text: #2c3e50;        /* Soft Dark Gray */
             --light: #f8fafc;       /* Ultra Light Gray background */
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px rgba(0,0,0,0.15);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -113,14 +113,19 @@
             border-radius: 2px;
         }
 
-        /* Technical Expertise with Tooltips */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        /* --- UPDATED TECHNICAL EXPERTISE TOOLTIPS --- */
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; 
+        }
+
         h3 { color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
 
         .skill-item { 
             position: relative;
             background: #f1f5f9; 
-            margin: 10px 0; 
+            margin: 15px 0; 
             padding: 12px 18px; 
             border-radius: 12px; 
             font-weight: 600; 
@@ -128,13 +133,14 @@
             border-left: 5px solid var(--accent);
             transition: var(--transition);
             cursor: help;
+            z-index: 1; /* Default z-index */
         }
 
         .skill-desc {
             position: absolute;
-            left: 105%;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 125%; /* Position above the item */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
             width: 280px;
             background: var(--primary);
             color: white;
@@ -147,25 +153,36 @@
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
-            z-index: 10;
             pointer-events: none;
+            text-align: center;
         }
 
+        /* Tooltip Arrow */
         .skill-desc::after {
             content: "";
             position: absolute;
-            top: 50%;
-            right: 100%;
-            margin-top: -8px;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: transparent var(--primary) transparent transparent;
+            border-color: var(--primary) transparent transparent transparent;
         }
 
-        .skill-item:hover { background: var(--primary); color: white; transform: translateX(5px); }
-        .skill-item:hover .skill-desc { opacity: 1; visibility: visible; left: 110%; }
+        .skill-item:hover { 
+            background: var(--primary); 
+            color: white; 
+            transform: translateY(-2px);
+            z-index: 50; /* Ensure active item is on top of others */
+        }
 
-        /* Professional Journey Accordion */
+        .skill-item:hover .skill-desc { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- PROFESSIONAL JOURNEY ACCORDION --- */
         .job-entry { 
             margin-bottom: 1.5rem; 
             position: relative; 
@@ -244,13 +261,29 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* MOBILE ADJUSTMENTS */
         @media (max-width: 900px) {
             .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2.5rem; }
             .portrait-frame { margin: 0 auto; width: 220px; height: 220px; }
             header h1 { font-size: 2.5rem; }
-            .skill-desc { position: static; width: 100%; display: none; margin-top: 10px; }
+            
+            /* On mobile, tooltips appear as static text below the item when tapped */
+            .skill-desc { 
+                position: static; 
+                width: 100%; 
+                opacity: 1; 
+                visibility: visible; 
+                display: none; 
+                margin-top: 10px; 
+                transform: none;
+                background: rgba(26, 42, 58, 0.05);
+                color: var(--primary);
+                text-align: left;
+                padding: 10px;
+            }
             .skill-item:hover .skill-desc { display: block; }
             .skill-desc::after { display: none; }
+            .skill-item:hover { background: #f1f5f9; color: var(--primary); }
         }
     </style>
 </head>
@@ -279,38 +312,38 @@
                 <h3>Reporting & Data</h3>
                 <div class="skill-item">
                     Data Entry, Cleanup, & Transformation
-                    <div class="skill-desc">The process of fixing structural errors, removing duplicates, and converting raw data into a consistent, usable format for accurate analysis.</div>
+                    <div class="skill-desc">Fixing structural errors, removing duplicates, and converting raw data into a consistent, usable format.</div>
                 </div>
                 <div class="skill-item">
                     Power Query & VBA Macros
-                    <div class="skill-desc">Automating repeatable ETL (Extract, Transform, Load) pipelines and UI tasks to eliminate manual reporting effort and human error.</div>
+                    <div class="skill-desc">Automating repeatable data pipelines and UI tasks to eliminate manual effort and human error.</div>
                 </div>
                 <div class="skill-item">
                     SQL (MS Access / Superset)
-                    <div class="skill-desc">Querying complex databases to extract live data and connecting it to visualization layers like Apache Superset for real-time monitoring.</div>
+                    <div class="skill-desc">Querying databases to extract live data and connecting it to visualization layers for real-time monitoring.</div>
                 </div>
                 <div class="skill-item">
                     Dashboard Design (MS Excel)
-                    <div class="skill-desc">Creating user-centric visual interfaces that consolidate KPIs into one view, allowing stakeholders to make quick, data-driven decisions.</div>
+                    <div class="skill-desc">Creating visual interfaces that consolidate KPIs, allowing stakeholders to make quick, data-driven decisions.</div>
                 </div>
             </div>
             <div>
                 <h3>Analytics & Operations</h3>
                 <div class="skill-item">
                     Workforce Analytics
-                    <div class="skill-desc">Using data to measure schedule adherence, forecast accuracy, and agent productivity to optimize staffing levels and reduce labor costs.</div>
+                    <div class="skill-desc">Measuring schedule adherence, forecast accuracy, and agent productivity to optimize staffing levels.</div>
                 </div>
                 <div class="skill-item">
                     Data Driven Analysis (DDA)
-                    <div class="skill-desc">A systematic approach that uses empirical evidence and quantitative metrics rather than intuition to guide organizational strategy.</div>
+                    <div class="skill-desc">Using empirical evidence and quantitative metrics rather than intuition to guide organizational strategy.</div>
                 </div>
                 <div class="skill-item">
                     Impact to Performance Analysis
-                    <div class="skill-desc">Evaluating how specific operational changes or behaviors directly influence high-level business goals and bottom-line profitability.</div>
+                    <div class="skill-desc">Evaluating how operational changes or behaviors directly influence business goals and bottom-line profitability.</div>
                 </div>
                 <div class="skill-item">
                     Operational Leadership
-                    <div class="skill-desc">Managing daily business core activities, resolving bottlenecks, and motivating teams to ensure consistent quality and service delivery.</div>
+                    <div class="skill-desc">Managing core activities, resolving bottlenecks, and motivating teams to ensure consistent quality delivery.</div>
                 </div>
             </div>
         </div>
@@ -331,7 +364,6 @@
                     <li>Refining and modifying outreach scripts for improved conversion.</li>
                     <li>Transform and visualize raw dialer data into actionable performance dashboards.</li>
                     <li>Design, recommend, and implement incentive schemes and operational processes.</li>
-                    <li>Facilitate weekly Client Performance Reviews.</li>
                 </ul>
             </div>
         </div>
@@ -345,8 +377,8 @@
                 <span class="job-meta">VXI Global Holdings | Dec 2022 – Oct 2025</span>
                 <ul>
                     <li>Delivered complex executive-level reporting for global and local leadership.</li>
-                    <li>Managed high-impact reports: PPRO Coaching Compliance (Global) & PSP Pass Rate (Global).</li>
-                    <li>Maintain and consolidate P4P targets for Agents/TLs Globally and QPB File for Managers/Up in the entire PH Region.</li>
+                    <li>Managed high-impact reports: PPRO Coaching Compliance & PSP Pass Rate.</li>
+                    <li>Maintain and consolidate P4P targets and QPB Files for PH Region.</li>
                 </ul>
             </div>
         </div>
@@ -359,8 +391,8 @@
             <div class="job-details">
                 <span class="job-meta">VXI Global Holdings | Aug 2021 – Dec 2022</span>
                 <ul>
-                    <li>Recognized as <strong>Top 1 OM for 2022 Q2 and Q3</strong>.</li>
-                    <li>Managed program files for NPS/VOC, Impact to Performance Dashboards, and Attendance Projections.</li>
+                    <li>Recognized as Top 1 OM for 2022 Q2 and Q3.</li>
+                    <li>Managed program files for NPS/VOC and Impact to Performance Dashboards.</li>
                 </ul>
             </div>
         </div>
@@ -373,47 +405,8 @@
             <div class="job-details">
                 <span class="job-meta">VXI Global Holdings | Feb 2019 – Aug 2021</span>
                 <ul>
-                    <li>System Ambassador for AT&T, recommending tool and process improvements to clients.</li>
-                    <li>Awarded <strong>Top 1 TL for Q4 2019</strong>.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="job-entry">
-            <div class="job-header" onclick="toggleJob(this)">
-                <p class="job-title">Subject Matter Expert (AT&T Mobility Retention)</p>
-                <span class="toggle-icon">+</span>
-            </div>
-            <div class="job-details">
-                <span class="job-meta">VXI Global Holdings | Jul 2018 – Feb 2019</span>
-                <ul>
-                    <li>Product and Process expert.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="job-entry">
-            <div class="job-header" onclick="toggleJob(this)">
-                <p class="job-title">Customer Service Representative (AT&T Blue & AT&T Mobility Retention)</p>
-                <span class="toggle-icon">+</span>
-            </div>
-            <div class="job-details">
-                <span class="job-meta">VXI Global Holdings | Jul 2017 – Jul 2018</span>
-                <ul>
-                    <li>Resolved diverse customer inquiries while managing sales and retention strategies for DTV, DTV Now, and Phone services.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="job-entry">
-            <div class="job-header" onclick="toggleJob(this)">
-                <p class="job-title">Workforce Analyst (Expedia)</p>
-                <span class="toggle-icon">+</span>
-            </div>
-            <div class="job-details">
-                <span class="job-meta">Teleperformance (Davao) | Jan 2017 – Jul 2017</span>
-                <ul>
-                    <li>Managed Line Adherence for multiple Lines of Business (Sales & Service).</li>
+                    <li>System Ambassador for AT&T, recommending tool and process improvements.</li>
+                    <li>Awarded Top 1 TL for Q4 2019.</li>
                 </ul>
             </div>
         </div>
@@ -424,22 +417,9 @@
                 <span class="toggle-icon">+</span>
             </div>
             <div class="job-details">
-                <span class="job-meta">Teleperformance (Makati - Davao) | Apr 2015 – Jan 2017</span>
+                <span class="job-meta">Teleperformance | Apr 2015 – Jan 2017</span>
                 <ul>
                     <li>Provided technical support for Telco accounts (Phone, Internet, and Mobile).</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="job-entry">
-            <div class="job-header" onclick="toggleJob(this)">
-                <p class="job-title">Customer Service Chat Support (AT&T Mobility)</p>
-                <span class="toggle-icon">+</span>
-            </div>
-            <div class="job-details">
-                <span class="job-meta">Teleperformance (MOA) | Oct 2014 – Apr 2015</span>
-                <ul>
-                    <li>Assist customer inquiries and concerns with 2 concurring chats.</li>
                 </ul>
             </div>
         </div>
