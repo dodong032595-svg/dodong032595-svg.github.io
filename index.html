@@ -83,7 +83,14 @@
         }
 
         .portrait-frame:hover { transform: scale(1.02) rotate(1deg); }
-        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* UPDATED: Added object-position: top to prevent hair/head clipping */
+        .portrait-frame img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: top; 
+        }
 
         section { 
             background: var(--white); 
@@ -277,7 +284,6 @@
                 padding: 15px;
             }
 
-            /* Skill descriptions no longer "pop up" or float. They expand inline. */
             .skill-desc { 
                 position: relative !important; 
                 bottom: auto !important;
@@ -299,11 +305,10 @@
                 transition: all 0.4s ease;
             }
 
-            /* Active class to trigger the expand on mobile */
             .skill-item.mobile-active .skill-desc {
                 opacity: 1;
                 visibility: visible;
-                max-height: 300px; /* Large enough for long text */
+                max-height: 300px; 
                 padding: 12px !important;
                 margin-top: 10px;
             }
